@@ -9,7 +9,5 @@ namespace CodeWars
             return a*b;
         }
     }
-    class EntryTask
-    {
-    }
+   
 }
