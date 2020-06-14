@@ -7,6 +7,7 @@ namespace CodeWars
 {
     public class PerfectPower
     {
+        // To slow in case of too much math.log
         public static ( int , int)? IsPerfectPower1(int n)
         {
             for (int i = 2; i < n; i++)
@@ -18,8 +19,11 @@ namespace CodeWars
         }
         public static (int, int)? IsPerfectPower(int n)
         {
-            for (int i = 2; i < n; i++)
-                for (int j = 2; j < n; j++) if (Math.Pow(i, j) == n) return (i, j);
+            double _limit = Math.Sqrt(n)+1;
+            for (int i = 2; i < _limit; i++)
+            {
+                for (int j = 2; j < _limit; j++) if (Math.Pow(i, j) == n) return (i, j);
+            }
             return null;
         }
 
