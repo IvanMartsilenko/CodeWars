@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CodeWars
 {
@@ -9,9 +7,9 @@ namespace CodeWars
         public string workOnStrings(string a, string b)
         {
 
-            a = new string (changeCase(changeArray(parceString(a)), a));
-            b = new string (changeCase(changeArray(parceString(b)), b));
-            return a + b;
+            string _a = new string (changeCase(changeArray(parceString(b)), b, a));
+            string _b = new string (changeCase(changeArray(parceString(a)),a, b));
+            return _a + _b;
         }
         public int[] parceString ( string a)
         {
@@ -35,11 +33,15 @@ namespace CodeWars
             return _in;
         }
 
-        public char [] changeCase(int[] _in, string a)
+        public char [] changeCase( int[] _in, string a, string b)
         {
             char[] _a = a.ToCharArray();
-            for (int i = 0; i < _in.Length; i++)  if (Convert.ToBoolean(_in[i])) Char.ToUpper(_a[i]); 
-            return _a;
+            char[] _b = b.ToCharArray();
+            for (int i = 0; i < _a.Length; i++)
+                for (int j = 0; j < _b.Length; j++)
+                    if (Char.ToLower(_a[i]) == Char.ToLower(_b[j]) && Convert.ToBoolean(_in[i])) { if (_b[j] >= 'a') _b[j] = Char.ToUpper(_b[j]);
+                        else _b[j] = Char.ToLower(_b[j]); } 
+            return _b;
         }
     }
 }
